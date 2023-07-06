@@ -1,3 +1,7 @@
+"""
+largest sum subarray
+"""
+
 def kadane(arr):
     start = end = maxSofar = maxEndingHere = arr[0]
     for i in range(1,len(arr)):
@@ -15,6 +19,35 @@ def kadane(arr):
 
 print(kadane([-2,1,-3,4,-1,2,1,-5,4]))
 
+
+"""
+Min length subarray
+"""
+def minSubArrayLen(tar, arr):
+    startidx = 0
+    ans = float('inf')
+    sum = 0
+    for i in range(len(arr)):
+        if arr[i] + sum == tar:
+            ans = min(i - startidx + 1,ans)
+            sum += arr[i]
+            sum -= arr[startidx]
+            startidx += 1
+        elif arr[i] + sum < tar:
+            sum += arr[i]
+        else:
+            while(sum + arr[i] > tar):
+                sum -= arr[startidx]
+                startidx += 1
+            if sum + arr[i] == tar:
+                ans = min(i - startidx + 1,ans)
+                sum -= arr[startidx]
+                startidx += 1
+            sum += arr[i]
+    return ans if ans != float('inf') else 0
+
+print(minSubArrayLen(12,[1,2,3,4,5]))
+print(minSubArrayLen(6,[1,2,3,3,4]))
 
 """
 Given a binary array nums, you should delete one element from it.
