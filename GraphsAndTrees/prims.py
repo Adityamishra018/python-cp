@@ -2,6 +2,26 @@
 Find minimum spanning tree , given a graph
 assumed that weights are positive and greater than equal to 1
 
+PRIMS_ALGORITHM(Graph G):
+  1. Let V be the set of vertices in G.
+  2. Let E be the set of edges in G.
+  3. Let T be an empty set of edges (the minimum spanning tree).
+  4. Select an arbitrary starting vertex s from V.
+  5. Let visited be a set containing only s.
+  6. Let priority_queue be a priority queue (min-heap) of edges, keyed by their weights.
+
+  7. While visited does not contain all vertices in V:
+     8.  For each edge (u, v) in E where u is in visited and v is not in visited:
+     9.    Insert (u, v) into priority_queue with weight(u, v) as the key.
+     10. If priority_queue is empty:
+     11.   Return T (graph is disconnected).
+     12. (u, v) = Extract-Min(priority_queue). // Get the edge with the minimum weight.
+     13. If v is not in visited:
+     14.   Add (u, v) to T.
+     15.   Add v to visited.
+
+  16. Return T.
+
 """
 
 import heapq

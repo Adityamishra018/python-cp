@@ -1,6 +1,12 @@
 from copy import deepcopy
 import random, time
 
+"""
+Lomuto Partition: This is a simple algorithm, we keep track of index of smaller elements and keep swapping. We have used it here in this article because of its simplicity.
+
+Hoare's Partition: This is the fastest of all. Here we traverse array from both sides and keep swapping greater element on left with smaller on right while the array is not partitioned.
+"""
+
 def quicksort(arr, l=0,r=None):
     arr = deepcopy(arr)
     if r == None:
