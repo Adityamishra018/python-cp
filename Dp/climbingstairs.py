@@ -40,19 +40,17 @@ Return the minimum cost to reach the top of the floor.
 def climbingstairsCostMemo(costs):
     memo={}
     n = len(costs)
+    
     def solve(idx):
+        if idx >= n:
+            return 0
+        
         if idx in memo:
             return memo[idx]
 
-        if idx >= n:
-            return 0
-        elif idx == n-1:
-            return costs[n-1]
-        elif idx == n-2:
-            return costs[n-2]
-        
-        memo[n] = min(costs[idx] + solve(idx+2),costs[idx] + solve(idx+1))
-        return memo[n]
+        memo[idx] = min(costs[idx] + solve(idx + 1), costs[idx] + solve(idx + 2))
+        return memo[idx]
+    
     return min(solve(0),solve(1))
 
 print(climbingstairsCostMemo([1,100,1,1,1,100,1,1,100,1]))
